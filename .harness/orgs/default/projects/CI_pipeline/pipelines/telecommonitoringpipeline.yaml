@@ -29,7 +29,7 @@ pipeline:
             type: Cloud
             spec:
               imageSpec:
-                imageName: ubuntu-latest
+                imageName: ubuntu-22
           execution:
             steps:
               - step:
@@ -39,5 +39,7 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
+                      java -version
+                      mvn -version
                       chmod +x mvnw
                       ./mvnw clean test
