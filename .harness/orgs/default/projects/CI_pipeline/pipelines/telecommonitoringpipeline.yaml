@@ -1,0 +1,43 @@
+pipeline:
+  name: telecom-monitoring-pipeline
+  identifier: telecommonitoringpipeline
+  projectIdentifier: CI_pipeline
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.githubconnector
+        build: <+input>
+  stages:
+    - stage:
+        name: Build
+        identifier: Build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec:
+              imageSpec:
+                imageName: ubuntu-latest
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Maven Build and Test
+                  identifier: Maven_Build_and_Test
+                  spec:
+                    shell: Sh
+                    command: |-
+                      chmod +x mvnw
+                      ./mvnw clean test
