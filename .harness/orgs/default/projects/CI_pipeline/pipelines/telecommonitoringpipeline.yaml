@@ -50,6 +50,16 @@ pipeline:
 
                       chmod +x mvnw
                       ./mvnw clean test
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: dockerhubconnector
+                    repo: yadavkk/telecom-monitoring-app
+                    tags:
+                      - latest
+                    caching: true
     - stage:
         name: Deploy
         identifier: Deploy
