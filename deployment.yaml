@@ -1,0 +1,20 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telecom-monitoring-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: telecom-monitoring-app
+  template:
+    metadata:
+      labels:
+        app: telecom-monitoring-app
+    spec:
+      containers:
+        - name: telecom-monitoring-app
+          image: yadavkk/telecom-monitoring-app:latest
+          ports:
+            - containerPort: 8080
