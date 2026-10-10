@@ -50,6 +50,8 @@ pipeline:
 
                       chmod +x mvnw
                       ./mvnw clean test
+                      ./mvnw package -DskipTests
+                      ls -lh target/*.jar
               - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_1
