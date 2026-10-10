@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: telecom-monitoring-app
-          image: YOUR_DOCKER_IMAGE
+          image: yadavkk/telecom-monitoring-app:latest
           ports:
             - containerPort: 8080
