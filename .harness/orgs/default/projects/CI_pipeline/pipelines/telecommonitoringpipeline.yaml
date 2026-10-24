@@ -96,7 +96,7 @@ pipeline:
                     instanceSelection:
                       type: Count
                       spec:
-                        count: 4
+                        count: 2
                   timeout: 10m
             rollbackSteps:
               - step:
