@@ -71,6 +71,19 @@ pipeline:
           deploymentType: Kubernetes
           service:
             serviceRef: telecommonitoringservice
+            serviceInputs:
+              serviceDefinition:
+                type: Kubernetes
+                spec:
+                  manifests:
+                    - manifest:
+                        identifier: telecomk8smanifest
+                        type: K8sManifest
+                        spec:
+                          store:
+                            type: Github
+                            spec:
+                              branch: <+input>.executionInput()
           environment:
             environmentRef: dockerdesktopdev
             deployToAll: false
