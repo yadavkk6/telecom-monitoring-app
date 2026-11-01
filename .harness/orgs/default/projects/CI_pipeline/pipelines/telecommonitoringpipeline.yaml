@@ -1,4 +1,3 @@
-
 pipeline:
   name: telecom-monitoring-pipeline
   identifier: telecommonitoringpipeline
@@ -63,7 +62,6 @@ pipeline:
                     tags:
                       - latest
                     caching: true
-
     - stage:
         name: Deploy
         identifier: Deploy
@@ -103,6 +101,18 @@ pipeline:
                     pruningEnabled: false
                     delegateSelectors:
                       - helm-delegate
+              - step:
+                  type: K8sScale
+                  name: K8sScale_1
+                  identifier: K8sScale_1
+                  spec:
+                    workload: default/Deployment/telecom-monitoring-app
+                    skipSteadyStateCheck: false
+                    instanceSelection:
+                      type: Count
+                      spec:
+                        count: 5
+                  timeout: 10m
             rollbackSteps:
               - step:
                   name: Rollback Rollout Deployment
